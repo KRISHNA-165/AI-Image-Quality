@@ -8,7 +8,7 @@ backend/.venv/
 # Dependencies
 node_modules/
 frontend/node_modules/
-package-lock.json
+
 
 # Python caches and bytecode
 __pycache__/
