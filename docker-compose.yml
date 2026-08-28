@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: qualivision_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/storage:/app/backend/storage
+      - ./backend/quality_detector.db:/app/backend/quality_detector.db
+    environment:
+      - PROJECT_NAME=QualiVision AI Engine
+      - API_V1_PREFIX=/api/v1
+      - UVICORN_WORKERS=4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: qualivision_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always

@@ -1,0 +1,41 @@
+# Environments and Virtualenv
+venv/
+.venv/
+env/
+backend/venv/
+backend/.venv/
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+package-lock.json
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+backend/quality_detector.db
+
+# Storage & temporary runtime uploads
+backend/storage/uploads/*
+!backend/storage/uploads/.gitkeep
+backend/storage/heatmaps/*
+!backend/storage/heatmaps/.gitkeep
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Frontend builds
+frontend/dist/
+dist/
