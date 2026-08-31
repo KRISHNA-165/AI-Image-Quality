@@ -37,30 +37,30 @@ describe('App Root Component', () => {
   it('renders application header and navigation tabs', async () => {
     render(<App />);
 
-    expect(screen.getByText('QualiVision AI')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /QualiVision/i })).toBeInTheDocument();
     expect(screen.getByText('Image Analyzer')).toBeInTheDocument();
-    expect(screen.getByText('Batch Processing')).toBeInTheDocument();
-    expect(screen.getByText('History Log')).toBeInTheDocument();
-    expect(screen.getByText('AI Benchmarks')).toBeInTheDocument();
+    expect(screen.getByText('Batch Analysis')).toBeInTheDocument();
+    expect(screen.getByText('Analysis History')).toBeInTheDocument();
+    expect(screen.getByText('AI Benchmark & Metrics')).toBeInTheDocument();
   });
 
   it('navigates to Batch Processing tab when clicked', async () => {
     render(<App />);
 
-    const batchTab = screen.getByText('Batch Processing');
+    const batchTab = screen.getByRole('button', { name: /Batch Analysis/i });
     fireEvent.click(batchTab);
 
-    expect(screen.getByText(/Analyze multiple images simultaneously/i)).toBeInTheDocument();
+    expect(screen.getByText(/Drag & Drop Multiple Images for Batch Analysis/i)).toBeInTheDocument();
   });
 
   it('navigates to AI Benchmarks tab when clicked', async () => {
     render(<App />);
 
-    const benchmarksTab = screen.getByText('AI Benchmarks');
+    const benchmarksTab = screen.getByRole('button', { name: /AI Benchmark & Metrics/i });
     fireEvent.click(benchmarksTab);
 
     await waitFor(() => {
-      expect(screen.getByText(/AI Model Evaluation & Benchmarks/i)).toBeInTheDocument();
+      expect(screen.getByText(/Evaluation Confusion Matrix/i)).toBeInTheDocument();
     });
   });
 });
