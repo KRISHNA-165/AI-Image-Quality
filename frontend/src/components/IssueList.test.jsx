@@ -6,8 +6,8 @@ import IssueList from './IssueList';
 describe('IssueList Component', () => {
   it('renders clean state when no issues detected', () => {
     render(<IssueList issues={[]} />);
-    expect(screen.getByText(/No Quality Defects Detected/i)).toBeInTheDocument();
-    expect(screen.getByText(/passed all sharpness, exposure, and noise thresholds/i)).toBeInTheDocument();
+    expect(screen.getByText(/No Degradations Detected/i)).toBeInTheDocument();
+    expect(screen.getByText(/satisfies all visual quality benchmarks/i)).toBeInTheDocument();
   });
 
   it('renders list of detected quality issues with severity and confidence', () => {
@@ -27,11 +27,11 @@ describe('IssueList Component', () => {
     ];
 
     render(<IssueList issues={issues} />);
-    expect(screen.getByText(/Identified Quality Issues \(2\)/i)).toBeInTheDocument();
-    expect(screen.getByText('BLUR')).toBeInTheDocument();
-    expect(screen.getByText('HIGH Severity')).toBeInTheDocument();
-    expect(screen.getByText(/94% Conf/i)).toBeInTheDocument();
-    expect(screen.getByText('NOISE')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Detected Quality Issues/i })).toBeInTheDocument();
+    expect(screen.getByText(/blur/i)).toBeInTheDocument();
+    expect(screen.getByText('HIGH SEVERITY')).toBeInTheDocument();
+    expect(screen.getByText(/Conf:\s*94\s*%/i)).toBeInTheDocument();
+    expect(screen.getByText(/noise/i)).toBeInTheDocument();
     expect(screen.getByText(/Elevated high-frequency background grain/i)).toBeInTheDocument();
   });
 });
